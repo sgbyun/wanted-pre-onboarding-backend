@@ -15,6 +15,16 @@ const UserRepository = {
       throw error;
     }
   },
+
+  async findUserByEmail(email) {
+    try {
+      return await prisma.users.findUnique({
+        where: { email: email },
+      });
+    } catch (error) {
+      throw error;
+    }
+  },
 };
 
 export { UserRepository };
