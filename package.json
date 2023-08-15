@@ -4,12 +4,14 @@
   "description": "wanted_pre_onboarding_project",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js --exec babel-node",
+    "start": "concurrently \"npm run dev\" \"npx prisma studio\"",
+    "dev": "nodemon index.js --exec babel-node",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "sanggi byun",
   "license": "ISC",
   "dependencies": {
+    "@prisma/client": "^5.1.1",
     "bcrypt": "^5.1.0",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
