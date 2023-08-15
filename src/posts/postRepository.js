@@ -40,7 +40,7 @@ const PostRepository = {
 
   async findPostById(postId) {
     try {
-      return await prisma.posts.findUnique({ where: { id: postId } });
+      return await prisma.posts.findUnique({ where: { id: postId, deleted_at: null } });
     } catch (error) {
       throw error;
     }
@@ -48,7 +48,18 @@ const PostRepository = {
 
   async updatePost(postId, title, body) {
     try {
-      return await prisma.posts.update({ where: { id: postId }, data: { title, body } });
+      return await prisma.posts.update({
+        where: { id: postId, deleted_at: null },
+        data: { title, body },
+      });
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  async deletePostById(postId) {
+    try {
+      return await prisma.posts.delete({ where: { id: postId } });
     } catch (error) {
       throw error;
     }

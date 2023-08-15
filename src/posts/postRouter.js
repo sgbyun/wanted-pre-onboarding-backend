@@ -11,6 +11,6 @@ PostRouter.get('/posts/:id', PostController.selectPost);
 
 PostRouter.patch('/posts', loginValidation, PostController.patchPost);
 
-//PostRouter.delete('/posts/:id', loginValidation, PostController.deletePost);
+PostRouter.delete('/posts/:id', loginValidation, PostController.deletePost);
 
 export { PostRouter };

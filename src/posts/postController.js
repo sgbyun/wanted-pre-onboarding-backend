@@ -56,6 +56,17 @@ const PostController = {
       res.status(500).json({ error: error.message });
     }
   },
+
+  async deletePost(req, res) {
+    try {
+      const user = req.user;
+      const postId = parseInt(req.params.id);
+      await PostService.deletePost(user, postId);
+      return res.status(200).json({ message: '게시글 삭제 성공' });
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  },
 };
 
 export { PostController };

@@ -40,10 +40,22 @@ const PostService = {
   async updatePost(user, postId, title, body) {
     try {
       const post = await PostRepository.findPostById(postId);
-      if (post.author_email !== user) {
+      if (!post || post.author_email !== user) {
         throw new Error('게시글 작성자만 수정 가능합니다.');
       }
       return await PostRepository.updatePost(postId, title, body);
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  async deletePost(user, postId) {
+    try {
+      const post = await PostRepository.findPostById(postId);
+      if (!post || post.author_email !== user) {
+        throw new Error('게시글 작성자만 삭제 가능합니다.');
+      }
+      return await PostRepository.deletePostById(postId);
     } catch (error) {
       throw error;
     }
