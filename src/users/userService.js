@@ -23,7 +23,7 @@ const UserService = {
         throw new Error('비밀번호가 일치하지 않습니다.');
       }
       const secretKey = process.env.JWT_SECRET_KEY || 'secret_key';
-      const token = jwt.sign({ emailId: foundUser.email }, secretKey);
+      const token = jwt.sign({ email: foundUser.email }, secretKey);
       return token;
     } catch (error) {
       throw error;

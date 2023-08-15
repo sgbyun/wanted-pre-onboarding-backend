@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
-import { userRouter } from './users/userRouter';
+import { UserRouter } from './users/userRouter';
+import { PostRouter } from './posts/postRouter';
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.get('/', (req, res) => {
   res.send('원티드 프리온보딩 백엔드 프로젝트');
 });
 
-app.use(userRouter);
+app.use(UserRouter);
+app.use(PostRouter);
 
 export { app };
