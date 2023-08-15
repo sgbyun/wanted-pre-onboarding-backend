@@ -5,7 +5,7 @@ const PostRouter = Router();
 
 PostRouter.post('/posts', loginValidation, PostController.createPost);
 
-//PostRouter.get('/posts', PostController.getPosts);
+PostRouter.get('/posts', PostController.getPosts);
 
 //PostRouter.get('/posts/:id', PostController.selectPost);
 

@@ -14,6 +14,27 @@ const PostController = {
       res.status(500).json({ error: error.message });
     }
   },
+
+  async getPosts(req, res) {
+    try {
+      const postPerPage = parseInt(req.query.take); // 페이지당 게시글수
+      const currentPage = parseInt(req.query.page); // 현재 페이지
+      const totalPostsCount = await PostService.getTotalPostsCount();
+      let startIndex = (currentPage - 1) * postPerPage;
+      if (startIndex < 0) {
+        startIndex = 0;
+      }
+      const postList = await PostService.getPostList(startIndex, postPerPage);
+      return res.status(200).json({
+        totalPostsCount,
+        page: currentPage,
+        totalPages: Math.ceil(totalPostsCount / postPerPage),
+        data: postList,
+      });
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  },
 };
 
 export { PostController };

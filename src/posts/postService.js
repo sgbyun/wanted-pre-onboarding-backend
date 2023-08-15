@@ -8,6 +8,22 @@ const PostService = {
       throw error;
     }
   },
+
+  async getTotalPostsCount() {
+    try {
+      return await PostRepository.getTotalPostsCount();
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  async getPostList(startIndex, postPerPage) {
+    try {
+      return await PostRepository.findPostsByPage(startIndex, postPerPage);
+    } catch (error) {
+      throw error;
+    }
+  },
 };
 
 export { PostService };
