@@ -45,6 +45,14 @@ const PostRepository = {
       throw error;
     }
   },
+
+  async updatePost(postId, title, body) {
+    try {
+      return await prisma.posts.update({ where: { id: postId }, data: { title, body } });
+    } catch (error) {
+      throw error;
+    }
+  },
 };
 
 export { PostRepository };

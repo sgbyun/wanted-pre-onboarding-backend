@@ -45,6 +45,17 @@ const PostController = {
       res.status(500).json({ error: error.message });
     }
   },
+
+  async patchPost(req, res) {
+    try {
+      const user = req.user;
+      const { postId, title, body } = req.body;
+      const updatedPost = await PostService.updatePost(user, postId, title, body);
+      return res.status(201).json(updatedPost);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  },
 };
 
 export { PostController };

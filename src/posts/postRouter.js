@@ -9,7 +9,7 @@ PostRouter.get('/posts', PostController.getPosts);
 
 PostRouter.get('/posts/:id', PostController.selectPost);
 
-//PostRouter.patch('/posts', loginValidation, PostController.patchPost);
+PostRouter.patch('/posts', loginValidation, PostController.patchPost);
 
 //PostRouter.delete('/posts/:id', loginValidation, PostController.deletePost);
 

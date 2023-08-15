@@ -36,6 +36,18 @@ const PostService = {
       throw error;
     }
   },
+
+  async updatePost(user, postId, title, body) {
+    try {
+      const post = await PostRepository.findPostById(postId);
+      if (post.author_email !== user) {
+        throw new Error('게시글 작성자만 수정 가능합니다.');
+      }
+      return await PostRepository.updatePost(postId, title, body);
+    } catch (error) {
+      throw error;
+    }
+  },
 };
 
 export { PostService };
