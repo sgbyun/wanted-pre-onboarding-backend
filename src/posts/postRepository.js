@@ -37,6 +37,14 @@ const PostRepository = {
       throw error;
     }
   },
+
+  async findPostById(postId) {
+    try {
+      return await prisma.posts.findUnique({ where: { id: postId } });
+    } catch (error) {
+      throw error;
+    }
+  },
 };
 
 export { PostRepository };

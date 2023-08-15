@@ -24,6 +24,18 @@ const PostService = {
       throw error;
     }
   },
+
+  async getPost(postId) {
+    try {
+      const post = await PostRepository.findPostById(postId);
+      if (!post || post.deleted_at !== null) {
+        throw new Error('삭제된 게시글입니다.');
+      }
+      return post;
+    } catch (error) {
+      throw error;
+    }
+  },
 };
 
 export { PostService };

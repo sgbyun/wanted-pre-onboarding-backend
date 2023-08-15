@@ -35,6 +35,16 @@ const PostController = {
       res.status(500).json({ error: error.message });
     }
   },
+
+  async selectPost(req, res) {
+    try {
+      const postId = parseInt(req.params.id);
+      const post = await PostService.getPost(postId);
+      return res.status(200).json(post);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  },
 };
 
 export { PostController };
