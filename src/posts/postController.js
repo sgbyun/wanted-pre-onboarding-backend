@@ -17,8 +17,8 @@ const PostController = {
 
   async getPosts(req, res) {
     try {
-      const postPerPage = parseInt(req.query.take); // 페이지당 게시글수
-      const currentPage = parseInt(req.query.page); // 현재 페이지
+      const postPerPage = parseInt(req.query.take) || 10; // 페이지당 게시글수
+      const currentPage = parseInt(req.query.page) || 1; // 현재 페이지
       const totalPostsCount = await PostService.getTotalPostsCount();
       let startIndex = (currentPage - 1) * postPerPage;
       if (startIndex < 0) {

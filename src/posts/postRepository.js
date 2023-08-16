@@ -50,7 +50,7 @@ const PostRepository = {
     try {
       return await prisma.posts.update({
         where: { id: postId, deleted_at: null },
-        data: { title, body },
+        data: { title, body, updated_at: new Date(Date.now() + 1000 * 60 * 60 * 9) },
       });
     } catch (error) {
       throw error;
